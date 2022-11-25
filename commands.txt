@@ -1,0 +1,32 @@
+docker-compose run --rm app sh -c "python manage.py makemigrations"
+docker-compose run --rm app sh -c "python manage.py migrate"
+
+Work with container
+use this tutorial for more commands in a running container
+How To Use docker exec to Run Commands in a Docker Container (digital Ocean)
+
+
+# Entrer en mode interactif avec un conteneur
+  docker exec -it CONTAINER_NAME sh
+
+# If you need to run a command inside a running Docker container,
+# but don’t need any interactivity, use the docker exec command without any flags:
+  docker exec CONTAINER_NAME command
+
+# To run a command as a different user inside your container, add the --user flag:
+  docker exec --user guest container-name whoami
+
+# Customize output of command "docker container ls"
+  docker container ls --format "table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Size}}\t{{.Mounts}}\t{{.Status}}"
+  docker container ls --format "table {{.ID}}"
+
+# Inspect container filesytem
+  sudo apt-get install jq
+  sudo docker container inspect mycontainer | jq '.[0].GraphDriver'
+  sudo ls or [ls -l] /var/lib/docker/overlay2/63ec1a08be5dc9870a279a13ff7134ab/merged
+
+# Removing all resources
+  sudo docker system prune -a
+
+
+
